@@ -1,0 +1,63 @@
+---
+title: "assignment2"
+author: "Chutiwan Pankram"
+date: "2024-09-11"
+output: html_document
+---
+
+## Install packages for summary
+install.packages("gt") 
+install.packages("gtsummary") 
+install.packages("dplyr") 
+```{r}
+## Import Dataset
+library(readr)
+train <- read_csv("~/GitHub/chu_SIRE506/assign2/data/train.csv")
+View(train)
+
+# create table of summary statistic
+library(gt)
+library(gtsummary)
+library(dplyr)
+table1 <- train %>%
+  select(Survived, Age, Fare, Pclass, Sex, SibSp, Parch) %>%
+  tbl_summary(
+    by = Survived,
+    label = list(
+      SibSp ~ "Number of siblings/spouses aboard", 
+      Parch ~ "Number of parents/children aboard",
+      Pclass ~ "Ticket class"
+    ),
+    # Customize the summary statistics for numeric variables to show IQR
+    statistic = list(
+      all_continuous() ~ "{median} ({IQR})"
+    )
+  ) %>%
+  modify_header(label = "Variable") %>%
+  modify_spanning_header(all_stat_cols() ~ "Survival Status") 
+
+  # Convert to gt table and add caption
+table1_gt <- as_gt(table1) %>%
+  tab_caption(
+    caption = "Figure 1: Summary Statistic for Titanic by Survival Status"
+  )
+print(table1_gt)
+```
+# create boxplot
+install.packages("ggplot2")
+```{r}
+library(ggplot2)
+# create boxplot of age by survival with outliers
+boxplot_age <- ggplot (train, aes(x = as.factor(Survived), y = Age)) +
+     geom_boxplot(outlier.colour = "lightgreen", outlier.shape = 16, outlier.size = 3) +
+     labs(x = "Survived", y = "Age", title = "Boxplot of Age by Survival with Outliers")
+print(boxplot_age)
+
+# create boxplot of fare by survival with outliers
+boxplot_fare <- ggplot (train, aes(x = as.factor(Survived), y = Fare)) +
+     geom_boxplot(outlier.colour = "lightslateblue", outlier.shape = 16, outlier.size = 3) +
+     labs(x = "Survived", y = "Fare", title = "Boxplot of Age by Survival with Outliers")
+print(boxplot_fare)
+```
+
+

@@ -1,0 +1,25 @@
+---
+title: "assignment2_report"
+author: "Chutiwan Pankram"
+date: "2024-09-11"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Summary Statistic for Titanic by Survival Status
+
+The table 1 shown summarizes the statistics for the Titanic by survival status from passengers total of 891. In the table provided, 0 represents a total of 549 non-survival passengers, and 1 represents a total of 342 survival passengers. The variables include age, fare, ticket class, sex, and number of family members aboard (both siblings/spouses and parents/children). For each variable, the table provides the median values, interquartile ranges (IQR), and percentages for both survivors and non-survivors, allowing a comparison of categorical (pclass, sibsp, parch, and sex) and ticket-related factors between the two groups. Categorical variables measure frequency, so percentages are suitable for analysis. For example, pclass (ticket class) shows that class 3 has the highest casualty rate at 68%, while first-class passengers have a higher survival rate at 40%. Sibsp and parch (siblings or spouses) indicate that those traveling alone have a higher chance of dying (72% for sibsp and 81% for parch) but also a significant survival rate (61% and 68%, respectively). The sex variable shows that women have a higher survival rate at 68%, compared to 15% for men in the non-survival group. Continuous variables, measured by median and standard deviation, include age and fare. The average age of non-survival passengers is 31 (SD 14), while survival passengers are 28 (SD 15), suggesting age is not a significant survival factor. Fare is associated with pclass; non-survival passengers spent an average of 22 (SD 31), while survival passengers spent 48 (SD 67), indicating that higher fares and better classes are linked to higher survival chances. The standard deviation shows variability in fare payments, with higher variability in the survival group. In conclusion, from all the variables used to predict the survival chance, it can be concluded that those who paid the highest fare, which is first class, have a higher chance of survival. The summary statistics show that sex and age indicate that women and children have a higher chance of survival than others. In Parch and Sinsp's analysis, they show that most passengers traveling alone have a higher chance of survival than those traveling with a family.
+
+```{r}
+table1_gt
+```
+
+```{r}
+boxplot_age
+
+```
+
+```{r}
+boxplot_fare
+```
